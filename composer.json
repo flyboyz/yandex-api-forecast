@@ -1,0 +1,14 @@
+{
+  "name": "alex/yandex",
+  "authors": [
+    {
+      "name": "Alexey Popov",
+      "email": "flyslam@yandex.ru"
+    }
+  ],
+  "require": {
+    "vlucas/phpdotenv": "^3.3",
+    "biplane/yandex-direct": "^4.12",
+    "sitkoru/yandex-direct-api": "^2019.5"
+  }
+}
