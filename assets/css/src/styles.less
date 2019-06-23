@@ -59,9 +59,13 @@
 
   .calc {
     position: relative;
+    display: flex;
     padding: 50px;
     width: 960px;
+    height: 460px;
     max-width: 100%;
+    flex-direction: column;
+    justify-content: space-between;
     background-color: #322f3c;
     border-radius: 3px;
     box-shadow: 0px 2px 10px rgba(0, 1, 0, 0.2);
@@ -81,44 +85,38 @@
     }
 
     .content {
-      padding: 30px 0;
-      min-height: 280px;
-
+      padding-top: 30px;
       .poll {
-        .items {
-          margin-top: 70px;
+        .item {
+          display: none;
+          height: 64px;
+          align-items: center;
+          justify-content: space-between;
 
-          .item {
-            display: none;
+          &.active {
+            display: flex;
+          }
+
+          p {
+            display: inline-block;
+            font-size: 22px;
+            line-height: 1.2;
+          }
+
+          input {
+            padding: 0 20px;
+            width: 460px;
             height: 64px;
-            align-items: center;
-            justify-content: space-between;
+            font-size: 22px;
+            text-align: right;
+            font-family: 'Gilroy';
+            border: none;
+            border-radius: 3px;
+            outline: none;
+            color: #333333;
 
-            &.active {
-              display: flex;
-            }
-
-            p {
-              display: inline-block;
-              font-size: 22px;
-              line-height: 1.2;
-            }
-
-            input {
-              padding: 0 20px;
-              width: 460px;
-              height: 64px;
-              font-size: 22px;
-              text-align: right;
-              font-family: 'Gilroy';
-              border: none;
-              border-radius: 3px;
-              outline: none;
-              color: #333333;
-
-              &::placeholder {
-                color: #999999;
-              }
+            &::placeholder {
+              color: #999999;
             }
           }
         }
@@ -128,21 +126,21 @@
           margin: 15px 0;
           justify-content: flex-end;
 
-          div {
+          & > div {
             position: relative;
             width: 460px;
             height: 10px;
             border-radius: 3px;
             background-color: #464550;
 
-            &::before {
-              content: '';
+            & > div {
               position: absolute;
               background-color: #689afb;
               height: 100%;
-              width: 11%;
+              width: 0;
               border-radius: 3px;
               box-shadow: #558ad277 0 0 15px;
+              transition: all .1s ease-in-out;
             }
           }
         }
@@ -152,47 +150,88 @@
           font-size: 18px;
           font-weight: 300;
         }
+
+        .buttons {
+          display: flex;
+          margin-top: 55px;
+          justify-content: space-between;
+
+          div {
+            &:hover {
+              opacity: .8;
+            }
+
+            &.help {
+              background-color: #535353;
+
+              &:active {
+                background-color: lighten(#535353, 10%);
+              }
+            }
+
+            &.next {
+              padding: 20px 20px 20px 65px;
+              background-color: @calc-blue;
+              box-shadow: #558ad277 0 0 15px;
+
+              &:active {
+                background-color: lighten(@calc-blue, 10%);
+              }
+
+              img {
+                margin-left: 65px;
+              }
+            }
+          }
+        }
       }
     }
 
-    .buttons {
-      display: flex;
-      justify-content: space-between;
+    .result {
+      & > div {
+        display: none;
+        flex-direction: column;
 
-      div {
-        cursor: pointer;
-        user-select: none;
-        padding: 20px 45px;
-        font-size: 22px;
-        border-radius: 3px;
-        transition: all .15s ease-in-out;
-
-        &:hover {
-          opacity: .8;
+        &.active {
+          display: flex;
         }
 
-        &.help {
-          background-color: #535353;
+        p {
+          display: inline-block;
+          font-size: 22px;
+          line-height: 1.2;
 
-          &:active {
-            background-color: lighten(#535353, 10%);
+          &:not(:last-of-type) {
+            margin-bottom: 38px;
+          }
+
+          span {
+            color: #98c4ff;
+            font-weight: bold;
           }
         }
 
-        &.next {
-          padding: 20px 20px 20px 65px;
+        .reset {
+          position: absolute;
+          bottom: 50px;
+          right: 50px;
           background-color: @calc-blue;
           box-shadow: #558ad277 0 0 15px;
 
           &:active {
             background-color: lighten(@calc-blue, 10%);
           }
-
-          img {
-            margin-left: 65px;
-          }
         }
       }
+    }
+
+    .button {
+      cursor: pointer;
+      user-select: none;
+      padding: 20px 45px;
+      font-size: 22px;
+      border-radius: 3px;
+      transition: all 0.15s ease-in-out;
     }
 
     .modal {

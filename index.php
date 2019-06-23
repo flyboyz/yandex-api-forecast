@@ -26,36 +26,50 @@
             <div class="content">
                 <div class="poll">
                     <div class="items">
-                        <div class="item active">
+                        <div class="item">
                             <p>Фраза по которой могут искать
                                 <br>Ваш продукт в интернете</p>
-                            <input type="text" placeholder="Цемент оптом">
+                            <input type="text" id="phrases" placeholder="Цемент оптом">
                         </div>
-                        <div class="item">
+                        <div class="item active">
                             <p>Регион в котором вы работаете</p>
                             <input type="text" id="region">
+                            <input type="hidden" id="region-id">
                         </div>
                         <div class="item">
                             <p>Прибыль которую приносит
                                 <br>1 клиент</p>
-                            <input type="text" placeholder="1 000 000">
+                            <input type="text" id="money" placeholder="1 000 000">
                         </div>
                         <div class="item">
                             <p>Скольким из 10 потенциальных
                                 <br>клиентов обратившихся к вам
                                 <br>вы сможете продать свой продукт</p>
-                            <input type="text" placeholder="5">
+                            <input type="text" id="leads" placeholder="5">
                         </div>
                     </div>
                     <div class="bar">
-                        <div></div>
+                        <div>
+                            <div></div>
+                        </div>
                     </div>
                     <p>*Фраза должна состоять из 2 или 3 слов (максимум 4)</p>
+                    <div class="buttons">
+                        <div class="button help modal-btn" data-modal="Будущая справка">Справка</div>
+                        <div class="button next">Далее <img src="/assets/images/arrow_right.png" alt="arrow"></div>
+                    </div>
                 </div>
-            </div>
-            <div class="buttons">
-                <div class="help modal-btn" data-modal="Будущая справка">Справка</div>
-                <div class="next">Далее <img src="/assets/images/arrow_right.png" alt="arrow"></div>
+                <div class="result">
+                    <div class="good">
+                        <p>Теоретически в вашей теме, только по одной фразе Цемент оптом
+                            возможно получать прибыль около <span>1 234 411 руб. в месяц</span></p>
+                        <p>И таких фраз может быть очень много!</p>
+                        <p>Ориентировочное кол-во заявок в месяц = <span>7</span></p>
+                        <p>Ориентировочное кол-во продаж в месяц = <span>2</span></p>
+                        <p>Ориентировочная стоимость клиента = <span>САС</span></p>
+                        <div class="button reset">Рассчитать заново</div>
+                    </div>
+                </div>
             </div>
             <div class="modal">
                 <div>
