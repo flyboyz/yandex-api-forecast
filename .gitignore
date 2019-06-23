@@ -1,4 +1,7 @@
-.*
+.env
 
 node_modules
 vendor
+
+assets/css/*.min.css
+assets/js/*.min.js
