@@ -1,0 +1,1226 @@
+/*!
+ * jQuery UI CSS Framework 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden {
+  display: none;
+}
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+  content: "";
+  display: table;
+  border-collapse: collapse;
+}
+.ui-helper-clearfix:after {
+  clear: both;
+}
+.ui-helper-zfix {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  /* support: IE8 */
+}
+.ui-front {
+  z-index: 100;
+}
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled {
+  cursor: default !important;
+  pointer-events: none;
+}
+/* Icons
+----------------------------------*/
+.ui-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-top: -0.25em;
+  position: relative;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+.ui-widget-icon-block {
+  left: 50%;
+  margin-left: -8px;
+  display: block;
+}
+/* Misc visuals
+----------------------------------*/
+/* Overlays */
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/*!
+ * jQuery UI Autocomplete 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/autocomplete/#theming
+ */
+.ui-autocomplete {
+  position: absolute;
+  top: 0;
+  left: 0;
+  cursor: default;
+}
+
+/*!
+ * jQuery UI Menu 1.12.1
+ * http://jqueryui.com
+ *
+ * Copyright jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/menu/#theming
+ */
+.ui-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: block;
+  outline: 0;
+}
+.ui-menu .ui-menu {
+  position: absolute;
+}
+.ui-menu .ui-menu-item {
+  margin: 0;
+  cursor: pointer;
+  /* support: IE10, see #8844 */
+  list-style-image: url("data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7");
+}
+.ui-menu .ui-menu-item-wrapper {
+  position: relative;
+  padding: 3px 1em 3px 0.4em;
+}
+.ui-menu .ui-menu-divider {
+  margin: 5px 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  border-width: 1px 0 0 0;
+}
+.ui-menu .ui-state-focus,
+.ui-menu .ui-state-active {
+  margin: -1px;
+}
+/* icon support */
+.ui-menu-icons {
+  position: relative;
+}
+.ui-menu-icons .ui-menu-item-wrapper {
+  padding-left: 2em;
+}
+/* left-aligned */
+.ui-menu .ui-icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0.2em;
+  margin: auto 0;
+}
+/* right-aligned */
+.ui-menu .ui-menu-icon {
+  left: auto;
+  right: 0;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-ExtraBold.eot');
+  src: local('Gilroy ExtraBold'), local('Gilroy-ExtraBold'), url('/assets/fonts/Gilroy-ExtraBold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-ExtraBold.woff') format('woff'), url('/assets/fonts/Gilroy-ExtraBold.ttf') format('truetype');
+  font-weight: 800;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Heavy.eot');
+  src: local('Gilroy Heavy'), local('Gilroy-Heavy'), url('/assets/fonts/Gilroy-Heavy.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Heavy.woff') format('woff'), url('/assets/fonts/Gilroy-Heavy.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-LightItalic.eot');
+  src: local('Gilroy Light Italic'), local('Gilroy-LightItalic'), url('/assets/fonts/Gilroy-LightItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-LightItalic.woff') format('woff'), url('/assets/fonts/Gilroy-LightItalic.ttf') format('truetype');
+  font-weight: 300;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-ThinItalic.eot');
+  src: local('Gilroy Thin Italic'), local('Gilroy-ThinItalic'), url('/assets/fonts/Gilroy-ThinItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-ThinItalic.woff') format('woff'), url('/assets/fonts/Gilroy-ThinItalic.ttf') format('truetype');
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-BlackItalic.eot');
+  src: local('Gilroy Black Italic'), local('Gilroy-BlackItalic'), url('/assets/fonts/Gilroy-BlackItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-BlackItalic.woff') format('woff'), url('/assets/fonts/Gilroy-BlackItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-BoldItalic.eot');
+  src: local('Gilroy Bold Italic'), local('Gilroy-BoldItalic'), url('/assets/fonts/Gilroy-BoldItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-BoldItalic.woff') format('woff'), url('/assets/fonts/Gilroy-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-SemiBold.eot');
+  src: local('Gilroy SemiBold'), local('Gilroy-SemiBold'), url('/assets/fonts/Gilroy-SemiBold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-SemiBold.woff') format('woff'), url('/assets/fonts/Gilroy-SemiBold.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-UltraLightItalic.eot');
+  src: local('Gilroy UltraLight Italic'), local('Gilroy-UltraLightItalic'), url('/assets/fonts/Gilroy-UltraLightItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-UltraLightItalic.woff') format('woff'), url('/assets/fonts/Gilroy-UltraLightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-SemiBoldItalic.eot');
+  src: local('Gilroy SemiBold Italic'), local('Gilroy-SemiBoldItalic'), url('/assets/fonts/Gilroy-SemiBoldItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-SemiBoldItalic.woff') format('woff'), url('/assets/fonts/Gilroy-SemiBoldItalic.ttf') format('truetype');
+  font-weight: 600;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Light.eot');
+  src: local('Gilroy Light'), local('Gilroy-Light'), url('/assets/fonts/Gilroy-Light.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Light.woff') format('woff'), url('/assets/fonts/Gilroy-Light.ttf') format('truetype');
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-MediumItalic.eot');
+  src: local('Gilroy Medium Italic'), local('Gilroy-MediumItalic'), url('/assets/fonts/Gilroy-MediumItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-MediumItalic.woff') format('woff'), url('/assets/fonts/Gilroy-MediumItalic.ttf') format('truetype');
+  font-weight: 500;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-ExtraBoldItalic.eot');
+  src: local('Gilroy ExtraBold Italic'), local('Gilroy-ExtraBoldItalic'), url('/assets/fonts/Gilroy-ExtraBoldItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-ExtraBoldItalic.woff') format('woff'), url('/assets/fonts/Gilroy-ExtraBoldItalic.ttf') format('truetype');
+  font-weight: 800;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Regular.eot');
+  src: local('Gilroy Regular'), local('Gilroy-Regular'), url('/assets/fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Regular.woff') format('woff'), url('/assets/fonts/Gilroy-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-HeavyItalic.eot');
+  src: local('Gilroy Heavy Italic'), local('Gilroy-HeavyItalic'), url('/assets/fonts/Gilroy-HeavyItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-HeavyItalic.woff') format('woff'), url('/assets/fonts/Gilroy-HeavyItalic.ttf') format('truetype');
+  font-weight: 900;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Medium.eot');
+  src: local('Gilroy Medium'), local('Gilroy-Medium'), url('/assets/fonts/Gilroy-Medium.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Medium.woff') format('woff'), url('/assets/fonts/Gilroy-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-RegularItalic.eot');
+  src: local('Gilroy Regular Italic'), local('Gilroy-RegularItalic'), url('/assets/fonts/Gilroy-RegularItalic.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-RegularItalic.woff') format('woff'), url('/assets/fonts/Gilroy-RegularItalic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-UltraLight.eot');
+  src: local('Gilroy UltraLight'), local('Gilroy-UltraLight'), url('/assets/fonts/Gilroy-UltraLight.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-UltraLight.woff') format('woff'), url('/assets/fonts/Gilroy-UltraLight.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Bold.eot');
+  src: local('Gilroy Bold'), local('Gilroy-Bold'), url('/assets/fonts/Gilroy-Bold.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Bold.woff') format('woff'), url('/assets/fonts/Gilroy-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Thin.eot');
+  src: local('Gilroy Thin'), local('Gilroy-Thin'), url('/assets/fonts/Gilroy-Thin.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Thin.woff') format('woff'), url('/assets/fonts/Gilroy-Thin.ttf') format('truetype');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Gilroy';
+  src: url('/assets/fonts/Gilroy-Black.eot');
+  src: local('Gilroy Black'), local('Gilroy-Black'), url('/assets/fonts/Gilroy-Black.eot?#iefix') format('embedded-opentype'), url('/assets/fonts/Gilroy-Black.woff') format('woff'), url('/assets/fonts/Gilroy-Black.ttf') format('truetype');
+  font-weight: 900;
+  font-style: normal;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+body {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  line-height: 1;
+  min-height: 100%;
+  overflow-x: hidden;
+}
+div {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+span {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+applet {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+object {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+iframe {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h1 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h3 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h4 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h5 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+h6 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+p {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  quotes: none;
+}
+blockquote:before {
+  content: '';
+  content: none;
+}
+blockquote:after {
+  content: '';
+  content: none;
+}
+pre {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+a {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  cursor: pointer;
+  text-decoration: none;
+}
+abbr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+acronym {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+address {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+big {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+cite {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+code {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+del {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+dfn {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+em {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+img {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  max-width: 100%;
+  height: auto;
+}
+ins {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+kbd {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+q {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  quotes: none;
+}
+q:before {
+  content: '';
+  content: none;
+}
+q:after {
+  content: '';
+  content: none;
+}
+s {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+samp {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+small {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+strike {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+strong {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+tt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+var {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+b {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+u {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+i {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+center {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+dl {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+dt {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+dd {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+ol {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+ul {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  list-style: none;
+}
+li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+form {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+label {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+table {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+caption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+tbody {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+tfoot {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+thead {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+tr {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+th {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+article {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+aside {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+canvas {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+details {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+embed {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+figure {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+figcaption {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+footer {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+header {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+hgroup {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+menu {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+nav {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+output {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+ruby {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+section {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+  display: block;
+}
+summary {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+time {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+mark {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+audio {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+.main-back {
+  display: flex;
+  width: 100vw;
+  min-height: 100vh;
+  padding: 80px 0;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: #7777f3;
+  background: linear-gradient(135deg, #b646c4 0%, #7777f3 50%, #679efc 100%);
+}
+.calc-section {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  font-family: 'Gilroy';
+  color: white;
+}
+@media (max-width: 1024px) {
+  .calc-section {
+    width: 90%;
+  }
+}
+.calc-section > div.text {
+  position: relative;
+  margin-bottom: 54px;
+}
+.calc-section > div.text img {
+  position: absolute;
+  left: 0;
+  transform: translateX(-95px);
+}
+@media (max-width: 1280px) {
+  .calc-section > div.text img {
+    display: none;
+  }
+}
+.calc-section > div.text p {
+  font-size: 22px;
+  line-height: 1.2;
+}
+@media (max-width: 768px) {
+  .calc-section > div.text p {
+    font-size: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .calc-section > div.text p {
+    font-size: 4vw;
+  }
+}
+.calc-section > div.text p.title {
+  margin-bottom: 16px;
+  font-size: 32px;
+  font-weight: bold;
+}
+@media (max-width: 768px) {
+  .calc-section > div.text p.title {
+    font-size: 27px;
+  }
+}
+@media (max-width: 480px) {
+  .calc-section > div.text p.title {
+    font-size: 5vw;
+  }
+}
+.calc-section .calc {
+  position: relative;
+  padding: 50px;
+  width: 960px;
+  max-width: 100%;
+  background-color: #322f3c;
+  border-radius: 3px;
+  box-shadow: 0px 2px 10px rgba(0, 1, 0, 0.2);
+}
+@media (max-width: 768px) {
+  .calc-section .calc {
+    padding: 40px;
+  }
+}
+@media (max-width: 480px) {
+  .calc-section .calc {
+    padding: 20px;
+  }
+}
+@media (max-width: 320px) {
+  .calc-section .calc {
+    padding: 10px;
+  }
+}
+.calc-section .calc .title {
+  font-size: 24px;
+  font-weight: bold;
+}
+.calc-section .calc .content {
+  padding: 30px 0;
+  min-height: 280px;
+}
+.calc-section .calc .content .poll .items {
+  margin-top: 70px;
+}
+.calc-section .calc .content .poll .items .item {
+  display: none;
+  height: 64px;
+  align-items: center;
+  justify-content: space-between;
+}
+.calc-section .calc .content .poll .items .item.active {
+  display: flex;
+}
+.calc-section .calc .content .poll .items .item p {
+  display: inline-block;
+  font-size: 22px;
+  line-height: 1.2;
+}
+.calc-section .calc .content .poll .items .item input {
+  padding: 0 20px;
+  width: 460px;
+  height: 64px;
+  font-size: 22px;
+  text-align: right;
+  font-family: 'Gilroy';
+  border: none;
+  border-radius: 3px;
+  outline: none;
+  color: #333333;
+}
+.calc-section .calc .content .poll .items .item input::placeholder {
+  color: #999999;
+}
+.calc-section .calc .content .poll .bar {
+  display: flex;
+  margin: 15px 0;
+  justify-content: flex-end;
+}
+.calc-section .calc .content .poll .bar div {
+  position: relative;
+  width: 460px;
+  height: 10px;
+  border-radius: 3px;
+  background-color: #464550;
+}
+.calc-section .calc .content .poll .bar div::before {
+  content: '';
+  position: absolute;
+  background-color: #689afb;
+  height: 100%;
+  width: 11%;
+  border-radius: 3px;
+  box-shadow: #558ad277 0 0 15px;
+}
+.calc-section .calc .content .poll > p {
+  text-align: right;
+  font-size: 18px;
+  font-weight: 300;
+}
+.calc-section .calc .buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.calc-section .calc .buttons div {
+  cursor: pointer;
+  user-select: none;
+  padding: 20px 45px;
+  font-size: 22px;
+  border-radius: 3px;
+  transition: all 0.15s ease-in-out;
+}
+.calc-section .calc .buttons div:hover {
+  opacity: 0.8;
+}
+.calc-section .calc .buttons div.help {
+  background-color: #535353;
+}
+.calc-section .calc .buttons div.help:active {
+  background-color: #6d6d6d;
+}
+.calc-section .calc .buttons div.next {
+  padding: 20px 20px 20px 65px;
+  background-color: #558ad2;
+  box-shadow: #558ad277 0 0 15px;
+}
+.calc-section .calc .buttons div.next:active {
+  background-color: #7da6dd;
+}
+.calc-section .calc .buttons div.next img {
+  margin-left: 65px;
+}
+.calc-section .calc .modal {
+  position: absolute;
+  display: none;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  align-items: center;
+  justify-content: center;
+  background-color: #0000008c;
+}
+.calc-section .calc .modal.show {
+  display: flex;
+}
+.calc-section .calc .modal > div {
+  position: relative;
+  width: 500px;
+  max-width: 90%;
+  font-size: 22px;
+  text-align: center;
+  background-color: #558ad2;
+}
+.calc-section .calc .modal > div img {
+  cursor: pointer;
+  position: absolute;
+  top: 13px;
+  right: 13px;
+}
+.calc-section .calc .modal > div .text {
+  padding: 50px 60px;
+}
+::selection {
+  background: #66666666;
+}
+.ui-autocomplete {
+  margin-top: 3px;
+  padding: 10px 0;
+  max-height: calc(42px * 3 + 20px);
+  top: 100%;
+  overflow: hidden;
+  font-size: 22px;
+  text-align: right;
+  font-family: 'Gilroy';
+  color: #333333;
+  background-color: white;
+  border-radius: 3px;
+}
+.ui-autocomplete .ui-menu-item-wrapper {
+  margin: 0;
+  padding: 10px 20px;
+}
+.ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
+  background-color: #cccccc;
+}
+
