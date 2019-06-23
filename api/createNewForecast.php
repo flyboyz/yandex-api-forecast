@@ -16,25 +16,20 @@ $res = $client->request('POST', 'https://api-sandbox.direct.yandex.ru/live/v4/js
         'Access-Control-Allow-Origin' => "*"
     ],
     'json' => [
-        'method' => "GetRegions",
+        'method' => "CreateNewForecast",
         'locale' => 'ru',
-        'token' => getenv('ACCESS_TOKEN')
+        'token' => getenv('ACCESS_TOKEN'),
+        'param' => [
+            'Currency' => 'RUB',
+            'Phrases' => [
+                utf8_encode($_REQUEST['phrases'])
+            ],
+            'GeoID' => [$_REQUEST['region']]
+        ],
+        'AuctionBids' => 'Yes'
     ]
 ]);
 
-$data = [];
-$regions = json_decode($res->getBody()->getContents())->data;
+$data = $res->getBody()->getContents();
 
-foreach ($regions as $region) {
-    $data[] = [
-        'label' => $region->RegionName,
-        'value' => $region->RegionID,
-    ];
-}
-
-$label = array_column($data, 'label');
-$value = array_column($data, 'value');
-
-array_multisort($label, SORT_ASC, $data);
-
-echo json_encode($data);
+echo $data;

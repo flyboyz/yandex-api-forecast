@@ -26,12 +26,12 @@
             <div class="content">
                 <div class="poll">
                     <div class="items">
-                        <div class="item">
+                        <div class="item active">
                             <p>Фраза по которой могут искать
                                 <br>Ваш продукт в интернете</p>
                             <input type="text" id="phrases" placeholder="Цемент оптом">
                         </div>
-                        <div class="item active">
+                        <div class="item">
                             <p>Регион в котором вы работаете</p>
                             <input type="text" id="region">
                             <input type="hidden" id="region-id">

@@ -33,11 +33,18 @@ $(function () {
         e.stopPropagation();
     });
 
+    // Change item logic
     function changeItem() {
         let index = $items.index($('.active'));
 
         if (index + 1 < $items.length) {
             if (index === 0) {
+                let re = /^(?:\S+\s*){1,4}$/u;
+
+                if (!re.test($('#phrases').val())) {
+                    return false;
+                }
+
                 $calc.find('.poll > p').css('opacity', 0);
             }
 
@@ -49,24 +56,25 @@ $(function () {
         } else {
             $calc.find('.poll').hide();
             $items.removeClass('active');
-            $calc.find('.result .good').addClass('active');
+
+            createNewForecast();
         }
     }
 
     var regions = [];
-    $.getJSON( "/api/getRegions.php", function( data ) {
+    $.getJSON("/api/getRegions.php", function (data) {
         regions = data;
-        console.log (regions);
+        console.log(regions);
 
         $('#region').autocomplete({
             source: regions,
-            focus: function( event, ui ) {
-                $( "#region" ).val( ui.item.label );
+            focus: function (event, ui) {
+                $("#region").val(ui.item.label);
                 return false;
             },
-            select: function( event, ui ) {
-                $( "#region" ).val( ui.item.label );
-                $( "#region-id" ).val( ui.item.value );
+            select: function (event, ui) {
+                $("#region").val(ui.item.label);
+                $("#region-id").val(ui.item.value);
 
                 return false;
             },
@@ -75,4 +83,29 @@ $(function () {
             }
         });
     });
+
+    function createNewForecast() {
+        $calc.find('.title').text('Создание отчета');
+
+        $.getJSON("/api/createNewForecast.php", {
+            phrases: $('#phrases').val(),
+            region: $('#region-id').val()
+        }, function (data) {
+            if (data.hasOwnProperty('data')) {
+                getForecast(data.data);
+            }
+        });
+    }
+
+    function getForecast(foreCastId) {
+        $calc.find('.title').text('Загрузка прогноза');
+
+        $.getJSON("/api/getForecast.php", {id: foreCastId}, function (data) {
+            calcucating(data.data);
+        });
+    }
+
+    function calcucating(data) {
+        $calc.find('.result .good').addClass('active');
+    }
 });
