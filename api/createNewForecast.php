@@ -24,9 +24,9 @@ $res = $client->request('POST', 'https://api-sandbox.direct.yandex.ru/live/v4/js
             'Phrases' => [
                 utf8_encode($_REQUEST['phrases'])
             ],
-            'GeoID' => [$_REQUEST['region']]
-        ],
-        'AuctionBids' => 'Yes'
+            'GeoID' => [$_REQUEST['region']],
+            'AuctionBids' => 'Yes',
+        ]
     ]
 ]);
 
