@@ -8,7 +8,7 @@ $(function () {
     let $modalDiv = $modal.find('div');
     let $items = $calc.find('.item');
 
-    // Close modal by overlay
+    // Close modal by click on overlay
     $(document).on('click', function (e) {
         if ($modalDiv.has(e.target).length === 0) {
             $modal.removeClass('show');
@@ -21,7 +21,7 @@ $(function () {
         $modal.removeClass('show');
     });
 
-    // Buttons
+    // Buttons bind
     $calc.find('.button').on('click', function (e) {
         if ($(e.target).hasClass('next')) {
             changeItem();
@@ -33,18 +33,18 @@ $(function () {
         e.stopPropagation();
     });
 
-    // Change item logic
+    // Change poll items
     function changeItem() {
         let index = $items.index($('.active'));
 
         if (index + 1 < $items.length) {
             if (index === 0) {
+                // Validate count of phrases
                 let re = /^(?:\S+\s*){1,4}$/u;
-
                 if (!re.test($('#phrases').val())) {
                     return false;
                 }
-
+                // Hide paragraph on others poll items
                 $calc.find('.poll > p').css('opacity', 0);
             }
 
