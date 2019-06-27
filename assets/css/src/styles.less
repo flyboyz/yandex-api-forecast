@@ -149,6 +149,10 @@
           text-align: right;
           font-size: 18px;
           font-weight: 300;
+
+          &.flash {
+            animation: flash .7s ease-in-out 2 forwards;
+          }
         }
 
         .buttons {
@@ -176,6 +180,11 @@
 
               &:active {
                 background-color: lighten(@calc-blue, 10%);
+              }
+
+              &.disabled {
+                background-color: gray;
+                box-shadow: darkgray 0 0 15px;
               }
 
               img {
@@ -274,4 +283,13 @@
 
 ::selection {
   background: #66666666;
+}
+
+@keyframes flash {
+  50% {
+    color: #ec695f;
+  }
+  100% {
+    color: inherit;
+  }
 }
