@@ -71,6 +71,9 @@
                         <div class="button reset">Рассчитать заново</div>
                     </div>
                 </div>
+                <div class="error">
+                    <p></p>
+                </div>
             </div>
             <div class="modal">
                 <div>
