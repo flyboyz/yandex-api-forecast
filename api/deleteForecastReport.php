@@ -5,6 +5,7 @@ $dotenv = Dotenv\Dotenv::create(__DIR__);
 $dotenv->load();
 
 $client = new GuzzleHttp\Client();
+
 $res = $client->request('POST', 'https://api.direct.yandex.ru/live/v4/json/', [
     'headers' => [
         'Host' => 'api.direct.yandex.ru',
@@ -13,20 +14,10 @@ $res = $client->request('POST', 'https://api.direct.yandex.ru/live/v4/json/', [
         'Content-Type' => 'application/json; charset=utf-8',
     ],
     'json' => [
-        'method' => "CreateNewForecast",
-        'locale' => 'ru',
+        'method' => "DeleteForecastReport",
         'token' => getenv('ACCESS_TOKEN'),
-        'param' => [
-            'Currency' => 'RUB',
-            'Phrases' => [
-                utf8_encode($_REQUEST['phrases'])
-            ],
-            'GeoID' => [$_REQUEST['region']],
-            'AuctionBids' => 'Yes',
-        ]
+        'param' => $_REQUEST['id'],
     ]
 ]);
 
-$forecastId = json_decode($res->getBody()->getContents())->data;
-
-echo $forecastId ? $forecastId : 0;
+echo json_decode($res->getBody()->getContents())->data;

@@ -1,5 +1,4 @@
 <?php
-
 $loader = require __DIR__ . '/../vendor/autoload.php';
 
 $dotenv = Dotenv\Dotenv::create(__DIR__);
@@ -7,16 +6,15 @@ $dotenv->load();
 
 $client = new GuzzleHttp\Client();
 
-$data = null;
-while (is_null($data)) {
-    $res = $client->request('POST', 'https://api-sandbox.direct.yandex.ru/live/v4/json/', [
+$countOfRequest = 0;
+$forecastData = null;
+while (is_null($forecastData) && $countOfRequest < 10) {
+    $res = $client->request('POST', 'https://api.direct.yandex.ru/live/v4/json/', [
         'headers' => [
-            'Host' => 'api-sandbox.direct.yandex.ru',
+            'Host' => 'api.direct.yandex.ru',
             'Authorization' => 'Bearer ' . getenv('ACCESS_TOKEN'),
             'Accept-Language' => 'ru',
-            'Client-Login' => 'agrom',
             'Content-Type' => 'application/json; charset=utf-8',
-            'Access-Control-Allow-Origin' => "*"
         ],
         'json' => [
             'method' => "GetForecast",
@@ -26,9 +24,24 @@ while (is_null($data)) {
         ]
     ]);
 
-    $data = json_decode($res->getBody()->getContents())->data;
+    $countOfRequest++;
+    $forecastData = json_decode($res->getBody()->getContents())->data;
+    if (!is_null($forecastData)) {
+        $auctionBids = $forecastData->Phrases[0]->AuctionBids;
+        foreach ($auctionBids as $auctionBid) {
+            if ($auctionBid->Position === 'P12') {
+                $price = $auctionBid->Price;
+                break;
+            }
+        }
 
-    sleep(2);
+        $forecastData = [
+            'clicks' => round($forecastData->Common->PremiumClicks),
+            'price' => isset($price) ? round($price) : 0,
+        ];
+    } else {
+        sleep(1.5);
+    }
 }
 
-echo json_encode($data);
+echo json_encode($forecastData);
