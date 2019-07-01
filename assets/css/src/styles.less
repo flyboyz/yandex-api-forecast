@@ -8,6 +8,12 @@
   flex-direction: column;
   background: @background2;
   background: linear-gradient(135deg, @background1 0%, @background2 50%, @background3 100%);
+  @media @m {
+    padding: 60px 0;
+  }
+  @media @s--less {
+    padding: 40px 0;
+  }
 }
 
 .calc-section {
@@ -17,12 +23,18 @@
   font-family: 'Gilroy';
   color: white;
   @media @m {
-    width: 90%;
+    width: 95%;
   }
 
   > div.text {
     position: relative;
     margin-bottom: 54px;
+    @media @s--less {
+      margin-bottom: 40px;
+    }
+    @media @xxs {
+      margin-bottom: 30px;
+    }
 
     img {
       position: absolute;
@@ -40,7 +52,7 @@
         font-size: 20px;
       }
       @media @xs {
-        font-size: 4vw;
+        font-size: 4.5vw;
       }
 
       &.title {
@@ -72,8 +84,11 @@
     @media @s {
       padding: 40px;
     }
+    @media @s--less {
+      height: initial;
+    }
     @media @xs {
-      padding: 20px;
+      padding: 15px;
     }
     @media @xxs {
       padding: 10px;
@@ -82,25 +97,51 @@
     .title {
       font-size: 24px;
       font-weight: bold;
+      line-height: 1.2;
+      @media @l {
+        font-size: 22px;
+      }
+      @media @s--less {
+        font-size: 18px;
+      }
     }
 
     .content {
-      padding-top: 30px;
+      padding-top: 40px;
       .poll {
         .item {
           display: none;
           height: 64px;
           align-items: center;
           justify-content: space-between;
+          @media @s {
+            height: initial;
+          }
 
           &.active {
             display: flex;
+            @media @s {
+              flex-direction: column;
+              align-items: flex-start;
+            }
           }
 
           p {
             display: inline-block;
             font-size: 22px;
             line-height: 1.2;
+            @media @l {
+              font-size: 20px;
+            }
+            @media @s {
+              margin-bottom: 10px;
+              br {
+                display: none;
+              }
+            }
+            @media @s--less {
+              font-size: 16px;
+            }
           }
 
           input {
@@ -114,6 +155,13 @@
             border-radius: 3px;
             outline: none;
             color: #333333;
+            @media @s {
+              width: 100%;
+            }
+            @media @s--less {
+              height: 48px;
+              font-size: 18px;
+            }
 
             &::placeholder {
               color: #999999;
@@ -132,6 +180,9 @@
             height: 10px;
             border-radius: 3px;
             background-color: #464550;
+            @media @s {
+              width: 100%;
+            }
 
             & > div {
               position: absolute;
@@ -149,6 +200,9 @@
           text-align: right;
           font-size: 18px;
           font-weight: 300;
+          @media @s--less {
+            font-size: 14px;
+          }
 
           &.flash {
             animation: flash .7s ease-in-out 2 forwards;
@@ -159,6 +213,12 @@
           display: flex;
           margin-top: 55px;
           justify-content: space-between;
+          @media @m {
+            margin-top: 40px;
+          }
+          @media @s--less {
+            margin-top: 30px;
+          }
 
           div {
             &:hover {
@@ -177,6 +237,9 @@
               padding: 20px 20px 20px 65px;
               background-color: @calc-blue;
               box-shadow: #558ad277 0 0 15px;
+              @media @s--less {
+                padding: 15px 25px;
+              }
 
               &:active {
                 background-color: lighten(@calc-blue, 10%);
@@ -189,6 +252,9 @@
 
               img {
                 margin-left: 65px;
+                @media @s--less {
+                  display: none;
+                }
               }
             }
           }
@@ -241,6 +307,10 @@
       font-size: 22px;
       border-radius: 3px;
       transition: all 0.15s ease-in-out;
+      @media @s--less {
+        padding: 15px 25px;
+        font-size: 18px;
+      }
     }
 
     .modal {
