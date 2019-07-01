@@ -143,7 +143,7 @@ $(function () {
     function calcucating(data) {
         const CR1 = .05;
 
-        let clicks = data.clicks * 2;
+        let clicks = data.clicks * .17; // shows * 85% * 10% * 2
         let SRS = data.price * .18 / 4;
         SRS = SRS < 10 ? 10 : SRS;
         let CR2 = 10 * $('#leads').val();
