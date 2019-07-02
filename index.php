@@ -22,9 +22,9 @@
             <p>— Подходит ли вам данный метод
                 <br>— Сколько заявок и какую прибыль вы сможете получать</p></div>
         <div class="calc">
-            <div class="title">Примерный расчет на основе данных «Прогноз бюджет Я.Директа»</div>
             <div class="content">
                 <div class="poll">
+                    <div class="title">Примерный расчет на основе данных «Прогноз бюджет Я.Директа»</div>
                     <div class="items">
                         <div class="item active">
                             <p>Фраза по которой могут искать
@@ -55,20 +55,31 @@
                     </div>
                     <p>*Фраза должна состоять из 2 или 3 слов (максимум 4)</p>
                     <div class="buttons">
-                        <div class="button help modal-btn" data-modal="Будущая справка">Справка</div>
+                        <div class="button help modal-btn" data-modal-text="Будущая справка">Справка</div>
                         <div class="button next">Далее <img src="/assets/images/arrow_right.png" alt="arrow"></div>
                     </div>
                 </div>
+                <div class="loading">
+                    <p></p>
+                    <img src="/assets/images/loader.svg" alt="loading">
+                </div>
                 <div class="result">
-                    <div class="good">
-                        <p>Теоретически в вашей теме, только по одной фразе Цемент оптом
-                            возможно получать прибыль около <span class="money-per-month">1 234 411</span> руб. в месяц
+                    <div class="title">Прогнозируемый результат</div>
+                    <div class="text">
+                        <p>Теоретически в вашей теме, только по одной фразе <span class="phrases"></span>
+                            возможно получать прибыль около <span class="money-per-month">0</span> руб. в месяц
                         </p>
                         <p>И таких фраз может быть очень много!</p>
-                        <p>Ориентировочное кол-во заявок в месяц = <span class="count-of-request-per-month">7</span></p>
-                        <p>Ориентировочное кол-во продаж в месяц = <span class="count-of-sales-per-month">2</span></p>
-                        <p>Ориентировочная стоимость клиента = <span class="sas">САС</span></p>
+                        <p>Ориентировочное кол-во заявок в месяц = <span class="count-of-request-per-month">0</span></p>
+                        <p>Ориентировочное кол-во продаж в месяц = <span class="count-of-sales-per-month">0</span></p>
+                        <p>Ориентировочная стоимость клиента = <span class="sas">0</span></p>
                         <div class="button reset">Рассчитать заново</div>
+                    </div>
+                    <div class="buttons hide">
+                        <div class="button scroll hide">Ничего страшного</div>
+                        <div class="button modal-btn what-should-i-do"
+                             data-modal-text="Тогда рекомендую Вам продолжить изучение сайта">Что мне делать?
+                        </div>
                     </div>
                 </div>
                 <div class="error">

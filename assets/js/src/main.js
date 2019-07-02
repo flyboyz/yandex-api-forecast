@@ -9,6 +9,7 @@ $(function () {
     let $modal = $calc.find('.modal');
     let $modalDiv = $modal.find('div');
     let $items = $calc.find('.item');
+    let $loading = $('.calc').find('.loading');
 
     // Close modal by click on overlay
     $(document).on('click', function (e) {
@@ -28,7 +29,7 @@ $(function () {
         if ($(e.target).hasClass('next') && !$(e.target).hasClass('disabled')) {
             changeItem();
         } else if ($(e.target).hasClass('modal-btn')) {
-            $modal.addClass('show').find('.text').text($(e.target).data('modal'));
+            $modal.addClass('show').find('.text').text($(e.target).data('modal-text'));
         } else if ($(e.target).hasClass('reset')) {
             location.reload();
         }
@@ -107,7 +108,7 @@ $(function () {
     });
 
     function createNewForecast() {
-        $calcTitle.text('Создание отчета');
+        showLoading('Отправка запроса');
 
         $.getJSON("/api/createNewForecast.php", {
             phrases: $('#phrases').val(),
@@ -117,18 +118,18 @@ $(function () {
                 getForecast(foreсastId);
             } else {
                 console.log('Error: createNewForecast');
-                showError('Ошибка создания отчёта', 'Ошибка получения ForecastID');
+                showError('Ошибка создания отчёта');
             }
         });
     }
 
     function getForecast(foreсastId) {
-        $calcTitle.text('Загрузка прогноза');
+        showLoading('Создание отчета');
 
         $.getJSON("/api/getForecast.php", {id: foreсastId}, function (foreсastData) {
             if (foreсastData === '0') {
                 console.log('Error: getForecast');
-                showError('Ошибка загрузки отчёта', `Ошибка получения Forecast с id ${foreсastId}`);
+                showError(`Ошибка загрузки отчёта ${foreсastId}`);
             } else {
                 calcucating(foreсastData);
                 $.getJSON("/api/deleteForecastReport.php", {id: foreсastId}, function (isDeleted) {
@@ -141,40 +142,96 @@ $(function () {
     }
 
     function calcucating(data) {
-        const CR1 = .05;
+        let vars = {};
 
-        let clicks = data.clicks * .17; // shows * 85% * 10% * 2
-        let SRS = data.price * .18 / 4;
-        SRS = SRS < 10 ? 10 : SRS;
-        let CR2 = 10 * $('#leads').val();
-        let money = $('#money').val();
-        let SAS = parseInt(SRS / CR1 / CR2);
-        let CountOfRequestPerMonth = clicks * CR1;
-        let CountOfSalesPerMonth = CountOfRequestPerMonth * CR2;
-        let moneyPerLead = money - SAS;
-        let moneyPerMonth = moneyPerLead * CountOfSalesPerMonth;
+        vars.CR1 = .05;
+        vars.clicks = Math.round(data.shows * .17); // shows * 85% * 10% * 2
+        vars.SRS = data.price * .045 < 10 ? 10 : data.price * .045;
+        vars.CR2 = 10 * $('#leads').val();
+        vars.money = $('#money').val();
+        vars.SAS = Math.round(vars.SRS / vars.CR1 / vars.CR2);
+        vars.CountOfRequestPerMonth = Math.round(vars.clicks * vars.CR1);
+        vars.CountOfSalesPerMonth = Math.round(vars.CountOfRequestPerMonth * vars.CR2);
+        vars.moneyPerLead = vars.money - vars.SAS;
+        vars.moneyPerMonth = vars.moneyPerLead * vars.CountOfSalesPerMonth;
 
-        if (clicks <= 60 ) {
-            $calcTitle.text('В вашей теме слишком мало запросов по данной ключевой фразе').css('text-align', 'center');
-            $calc.find('.result .few-clicks').addClass('active');
-        } else if (SAS >= money) {
-            $calc.find('.result .unfavorable').addClass('active');
-        } else if (money >= 1 && money <= 100) {
-            $calc.find('.result .normal').addClass('active');
-        } else {
-            $calcTitle.text('Примерный расчет на основе данных «Прогноз бюджет Я.Директа»');
+        // TODO remove it
+        console.log(vars.clicks, vars.SRS);
 
-            $('span.money-per-month').text(moneyPerMonth.toString().replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 '));
-            $('span.count-of-request-per-month').text(CountOfRequestPerMonth);
-            $('span.count-of-sales-per-month').text(CountOfSalesPerMonth);
-            $('span.sas').text(SAS);
-
-            $calc.find('.result .good').addClass('active');
-        }
+        showResult(generateResultText(vars), vars);
     }
 
-    function showError(errorTitle, errorText) {
-        $calcTitle.text(errorTitle);
-        $calc.find('.error p').text(errorText);
+    function generateResultText(vars) {
+        const lowCountOfClicks = vars.clicks <= 60;
+        const highCost = vars.SAS >= vars.money;
+        const lowProfitFromClient = vars.money >= 1 && vars.money <= 100;
+
+        let resultText = '';
+
+        if (lowCountOfClicks) {
+            resultText = `В вашей теме слишком мало запросов по данной ключевой фразе.
+            <br>Не  рекомендую использовать данный метод для запуска вашего проекта`;
+        }
+
+        if (highCost) {
+            resultText = `В вашей теме по данной ключевой фразе, стоимость привлечения клиента превышает сумму,
+            которую вы с него зарабатываете.
+            <br>Данный канал привлечения будет убыточным для Вас`;
+        }
+
+        if (lowProfitFromClient) {
+            resultText = `В вашей теме используя данную ключевую фразу, ваш заработок с одного клиента составит 
+            ${vars.moneyPerLead} руб.
+            <br>Данный канал привлечения является высокорисковым и низкомаржинальным для Вас`;
+        }
+
+        if (lowCountOfClicks && highCost) {
+            resultText = `В вашей теме слишком мало запросов по данной ключевой фразе и стоимость привлечения клиента
+            превышает сумму, которую вы с него зарабатываете.
+            <br>Данный канал привлечения будет убыточным для Вас`;
+        }
+
+        if (lowCountOfClicks && lowProfitFromClient) {
+            resultText = `В вашей теме слишком мало запросов по данной ключевой фразе. Ваш заработок с одного клиента
+            составит ${vars.moneyPerLead} руб.
+            <br>Данный канал привлечения является высокорисковым и низкомаржинальным для Вас`;
+        }
+
+        return resultText;
+    }
+
+    function showLoading(titleText, vars) {
+        if (!$loading.hasClass('load')) {
+            $loading.addClass('load');
+        }
+
+        $loading.find('p').text(titleText);
+    }
+
+    function showResult(resultText, vars) {
+        let $result = $calc.find('.result');
+
+        if (resultText) {
+            $result.find('.text').html(`<p style="width: 100%; text-align: center">${resultText}</p>`);
+            $result.find('.buttons').removeClass('hide');
+        } else {
+            $result.find('.phrases').text($calc.find('#phrases').val());
+            $result.find('.money-per-month').text(vars.moneyPerMonth.toString()
+                .replace(/(\d)(?=(\d{3})+(\D|$))/g, '$1 '));
+            $result.find('.count-of-request-per-month').text(vars.CountOfRequestPerMonth);
+            $result.find('.count-of-sales-per-month').text(vars.CountOfSalesPerMonth);
+            $result.find('.sas').text(vars.SAS);
+        }
+
+        $calc.find('.loading').removeClass('load');
+        $calc.find('.result').addClass('active');
+    }
+
+    function showError(errorText) {
+        $modal.addClass('show').find('.text').text(errorText);
+
+        if ($loading.hasClass('load')) {
+            $loading.removeClass('load');
+        }
     }
 });
