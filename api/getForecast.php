@@ -8,7 +8,8 @@ $client = new GuzzleHttp\Client();
 
 $countOfRequest = 0;
 $forecastData = null;
-while (is_null($forecastData) && $countOfRequest < 10) {
+
+while (is_null($forecastData) && $countOfRequest < 15) {
     $res = $client->request('POST', 'https://api.direct.yandex.ru/live/v4/json/', [
         'headers' => [
             'Host' => 'api.direct.yandex.ru',
@@ -36,7 +37,7 @@ while (is_null($forecastData) && $countOfRequest < 10) {
         }
 
         $forecastData = [
-            'clicks' => round($forecastData->Common->PremiumClicks),
+            'shows' => round($forecastData->Common->Shows),
             'price' => isset($price) ? round($price) : 0,
         ];
     } else {
