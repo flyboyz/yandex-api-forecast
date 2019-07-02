@@ -10,6 +10,7 @@ $(function () {
     let $modalDiv = $modal.find('div');
     let $items = $calc.find('.item');
     let $loading = $('.calc').find('.loading');
+    let $result = $calc.find('.result');
 
     // Close modal by click on overlay
     $(document).on('click', function (e) {
@@ -181,8 +182,9 @@ $(function () {
 
         if (lowProfitFromClient) {
             resultText = `В вашей теме используя данную ключевую фразу, ваш заработок с одного клиента составит 
-            ${vars.moneyPerLead} руб.
+            <span>${vars.moneyPerLead} руб.</span>
             <br>Данный канал привлечения является высокорисковым и низкомаржинальным для Вас`;
+            $result.find('.scroll').removeClass('hide');
         }
 
         if (lowCountOfClicks && highCost) {
@@ -193,7 +195,7 @@ $(function () {
 
         if (lowCountOfClicks && lowProfitFromClient) {
             resultText = `В вашей теме слишком мало запросов по данной ключевой фразе. Ваш заработок с одного клиента
-            составит ${vars.moneyPerLead} руб.
+            составит <span>${vars.moneyPerLead} руб.</span>
             <br>Данный канал привлечения является высокорисковым и низкомаржинальным для Вас`;
         }
 
@@ -209,10 +211,8 @@ $(function () {
     }
 
     function showResult(resultText, vars) {
-        let $result = $calc.find('.result');
-
         if (resultText) {
-            $result.find('.text').html(`<p style="width: 100%; text-align: center">${resultText}</p>`);
+            $result.find('.text').html(`<p class="centered">${resultText}</p>`);
             $result.find('.buttons').removeClass('hide');
         } else {
             $result.find('.phrases').text($calc.find('#phrases').val());

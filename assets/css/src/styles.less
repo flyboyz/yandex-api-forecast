@@ -82,7 +82,7 @@
       padding: 40px;
     }
     @media @s--less {
-      height: initial;
+      height: 370px;
     }
     @media @xs {
       padding: 15px;
@@ -112,8 +112,12 @@
         justify-content: space-between;
 
         .items {
-          padding-top: 40px;
+          padding-top: 60px;
+          @media @s--less {
+            padding-top: 30px;
+          }
         }
+
         .item {
           display: none;
           height: 64px;
@@ -282,6 +286,12 @@
           font-size: 24px;
           font-weight: bold;
           line-height: 1.2;
+          @media @l {
+            font-size: 22px;
+          }
+          @media @s--less {
+            font-size: 18px;
+          }
         }
       }
     }
@@ -297,8 +307,11 @@
       }
 
       .title {
-        margin-bottom: 20px;
         text-align: center;
+      }
+
+      .text {
+        padding: 20px 0;
       }
 
       p {
@@ -311,6 +324,11 @@
 
         &:not(:last-of-type) {
           margin-bottom: 25px;
+        }
+
+        &.centered {
+          width: 100%;
+          text-align: center;
         }
 
         span {
