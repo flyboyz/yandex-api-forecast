@@ -87,7 +87,9 @@
                         <div class="button reset">Рассчитать заново</div>
                     </div>
                     <div class="buttons hide">
-                        <div class="button scroll hide">Ничего страшного</div>
+                        <div class="button info-btn hide"
+                             data-modal-text="Тогда рекомендую Вам продолжить<br> изучение сайта">Ничего страшного
+                        </div>
                         <div class="button show-feedback">Что мне делать?</div>
                     </div>
                     <div class="modal feedback" id="Feedback">
