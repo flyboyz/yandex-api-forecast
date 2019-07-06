@@ -3,39 +3,89 @@
 require('webpack-jquery-ui/autocomplete');
 
 $(function () {
-    let $calc = $('.calc');
-    let $calcTitle = $('.calc').find('.title');
-    let $next = $calc.find('.next');
-    let $modal = $calc.find('.modal');
-    let $modalDiv = $modal.find('div');
-    let $items = $calc.find('.item');
-    let $loading = $('.calc').find('.loading');
-    let $result = $calc.find('.result');
+    let $calcCOPY;
+    let $calc;
+    let $calcTitle;
+    let $next;
+    let $infoModal;
+    let $items;
+    let $loading;
+    let $result;
 
-    // Close modal by click on overlay
-    $(document).on('click', function (e) {
-        if ($modalDiv.has(e.target).length === 0) {
-            $modal.removeClass('show');
-        }
-        e.stopPropagation();
-    });
+    function _binding() {
+        $calcCOPY = $('.calc').clone(true, true);
+        $calc = $('.calc');
+        $calcTitle = $calc.find('.title');
+        $next = $calc.find('.next');
+        $infoModal = $calc.find('#InfoModal');
+        $items = $calc.find('.item');
+        $loading = $calc.find('.loading');
+        $result = $calc.find('.result');
 
-    // Close modal by close button
-    $modal.find('img').on('click', () => {
-        $modal.removeClass('show');
-    });
+        // Close modal by click on overlay
+        $(document).on('click', function (e) {
+            if ($('.modal div').has(e.target).length === 0) {
+                $('.modal').removeClass('show');
+            }
+            e.stopPropagation();
+        });
 
-    // Buttons bind
-    $calc.find('.button').on('click', (e) => {
-        if ($(e.target).hasClass('next') && !$(e.target).hasClass('disabled')) {
-            changeItem();
-        } else if ($(e.target).hasClass('modal-btn')) {
-            $modal.addClass('show').find('.text').text($(e.target).data('modal-text'));
-        } else if ($(e.target).hasClass('reset')) {
-            location.reload();
-        }
-        e.stopPropagation();
-    });
+        // Close modal by close button
+        $('.modal').find('img').on('click', (e) => {
+            $(e.target).parents('.modal').removeClass('show');
+        });
+
+        // Buttons bind
+        $calc.find('.button').on('click', (e) => {
+            if ($(e.target).hasClass('next') && !$(e.target).hasClass('disabled')) {
+                changeItem();
+            } else if ($(e.target).hasClass('info-btn')) {
+                $infoModal.addClass('show').find('.text').html($(e.target).data('modal-text'));
+            } else if ($(e.target).hasClass('show-feedback')) {
+                $calc.find('#Feedback').addClass('show');
+            } else if ($(e.target).hasClass('reset')) {
+                refreshCalc();
+            } else if ($(e.target).hasClass('submit')) {
+                sendEmail();
+            }
+            e.stopPropagation();
+        });
+
+
+        $('#money').on('keyup', (e) => {
+            let re = /^\d(?:\d| )*$/;
+            re.test($(e.target).val())
+                ? $next.removeClass('disabled')
+                : $next.addClass('disabled');
+        });
+
+        $('#leads').on('keyup', (e) => {
+            let re = /^(?:[1-9]|10)$/;
+            re.test($(e.target).val())
+                ? $next.removeClass('disabled')
+                : $next.addClass('disabled');
+        });
+
+        $.getJSON("/api/getRegions.php", function (regions) {
+            $('#region').autocomplete({
+                source: regions,
+                focus: function (event, ui) {
+                    $("#region").val(ui.item.label);
+                    return false;
+                },
+                select: function (event, ui) {
+                    $("#region").val(ui.item.label);
+                    $("#region-id").val(ui.item.value);
+                    $next.removeClass('disabled');
+
+                    return false;
+                },
+                position: {
+                    my: "left top+3",
+                }
+            });
+        });
+    }
 
     // Change poll items
     function changeItem() {
@@ -74,40 +124,6 @@ $(function () {
         }
     }
 
-    $('#money').on('keyup', (e) => {
-        let re = /^\d(?:\d| )*$/;
-        re.test($(e.target).val())
-            ? $next.removeClass('disabled')
-            : $next.addClass('disabled');
-    });
-
-    $('#leads').on('keyup', (e) => {
-        let re = /^(?:[1-9]|10)$/;
-        re.test($(e.target).val())
-            ? $next.removeClass('disabled')
-            : $next.addClass('disabled');
-    });
-
-    $.getJSON("/api/getRegions.php", function (regions) {
-        $('#region').autocomplete({
-            source: regions,
-            focus: function (event, ui) {
-                $("#region").val(ui.item.label);
-                return false;
-            },
-            select: function (event, ui) {
-                $("#region").val(ui.item.label);
-                $("#region-id").val(ui.item.value);
-                $next.removeClass('disabled');
-
-                return false;
-            },
-            position: {
-                my: "left top+3",
-            }
-        });
-    });
-
     function createNewForecast() {
         showLoading('Отправка запроса');
 
@@ -119,7 +135,7 @@ $(function () {
                 getForecast(foreсastId);
             } else {
                 console.log('Error: createNewForecast');
-                showError('Ошибка создания отчёта');
+                showInfoModal('Ошибка создания отчёта');
             }
         });
     }
@@ -130,7 +146,7 @@ $(function () {
         $.getJSON("/api/getForecast.php", {id: foreсastId}, function (foreсastData) {
             if (foreсastData === '0') {
                 console.log('Error: getForecast');
-                showError(`Ошибка загрузки отчёта ${foreсastId}`);
+                showInfoModal(`Ошибка загрузки отчёта ${foreсastId}`);
             } else {
                 calcucating(foreсastData);
                 $.getJSON("/api/deleteForecastReport.php", {id: foreсastId}, function (isDeleted) {
@@ -155,9 +171,6 @@ $(function () {
         vars.CountOfSalesPerMonth = Math.round(vars.CountOfRequestPerMonth * vars.CR2);
         vars.moneyPerLead = vars.money - vars.SAS;
         vars.moneyPerMonth = vars.moneyPerLead * vars.CountOfSalesPerMonth;
-
-        // TODO remove it
-        console.log(vars.clicks, vars.SRS);
 
         showResult(generateResultText(vars), vars);
     }
@@ -184,7 +197,7 @@ $(function () {
             resultText = `В вашей теме используя данную ключевую фразу, ваш заработок с одного клиента составит 
             <span>${vars.moneyPerLead} руб.</span>
             <br>Данный канал привлечения является высокорисковым и низкомаржинальным для Вас`;
-            $result.find('.scroll').removeClass('hide');
+            $result.find('.scroll').removeClass('hide'); // Show second button
         }
 
         if (lowCountOfClicks && highCost) {
@@ -212,7 +225,7 @@ $(function () {
 
     function showResult(resultText, vars) {
         if (resultText) {
-            $result.find('.text').html(`<p class="centered">${resultText}</p>`);
+            $('.result > .text').html(`<p class="centered">${resultText}</p>`);
             $result.find('.buttons').removeClass('hide');
         } else {
             $result.find('.phrases').text($calc.find('#phrases').val());
@@ -227,11 +240,57 @@ $(function () {
         $calc.find('.result').addClass('active');
     }
 
-    function showError(errorText) {
-        $modal.addClass('show').find('.text').text(errorText);
+    function showInfoModal(text) {
+        $infoModal.addClass('show').find('.text').text(text);
 
         if ($loading.hasClass('load')) {
             $loading.removeClass('load');
         }
     }
+
+    function sendEmail() {
+        let $email = $('#Email');
+
+        if (validateEmail($email.val())) {
+            $.ajax({
+                method: 'POST',
+                url: "/sendMail.php",
+                data: {
+                    name: $('#Name').val(),
+                    email: $email.val(),
+                    message: $('#Message').val(),
+                }
+            })
+                .done(function (data) {
+                    let text = data === '1' ? 'Отправлено успешно' : `Ошибка: ${data}`;
+
+                    $('#Name').val('');
+                    $('#Email').val('');
+                    $('#Message').val('');
+
+                    $('.modal.feedback.show').removeClass('show');
+                    showInfoModal(text);
+                });
+        } else {
+            let emailText = $email.val();
+            $email.addClass('error');
+            setTimeout(() => {
+                $email.removeClass('error');
+            }, 1200)
+        }
+    }
+
+    function validateEmail(email) {
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(String(email).toLowerCase());
+    }
+
+    function refreshCalc() {
+        $calc.remove();
+        $('.calc-section').append($calcCOPY);
+        _binding();
+    }
+
+    // Init
+    _binding();
 });
