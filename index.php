@@ -55,7 +55,18 @@
                     </div>
                     <p>*Фраза должна состоять из 2 или 3 слов (максимум 4)</p>
                     <div class="buttons">
-                        <div class="button help modal-btn" data-modal-text="Будущая справка">Справка</div>
+                        <div class="button help info-btn" data-modal-text="<p>Для определения людей, которым будет показано
+                        объявление в РСЯ, Яндекс учитывает историю поисковых запросов. Другими словами, он находит тех,
+                        кто вводил те или иные поисковые фразы в поисковике и показывает ваши рекламные баннеры. Поэтому,
+                        подумайте, по какой фразе люди могут искать ваш продукт в поисковике.</p>
+                        <p>Лучше Не использовать слишком широкие или узкие фразы, выбирайте что-то среднее. Например,
+                        если вы продаёте яблоки Голден оптом, то лучше использовать самую очевидную фразу «Яблоки Голден
+                        оптом».</p>
+                        <p>При этом лучше Не использовать фразу «Яблоки» или «Яблоки купить», потому что это слишком
+                        широкие фразы и вы будете получать огромное количество нецелевых переходов. Также лучше Не
+                        использовать фразу «Яблоки Голден оптом купить недорого на рынке в Москве», потому что это очень
+                        узкая фраза для РСЯ и скорее всего переходов по ней Не будет.</p>">Справка
+                        </div>
                         <div class="button next">Далее <img src="/assets/images/arrow_right.png" alt="arrow"></div>
                     </div>
                 </div>
@@ -77,8 +88,20 @@
                     </div>
                     <div class="buttons hide">
                         <div class="button scroll hide">Ничего страшного</div>
-                        <div class="button modal-btn what-should-i-do"
-                             data-modal-text="Тогда рекомендую Вам продолжить изучение сайта">Что мне делать?
+                        <div class="button show-feedback">Что мне делать?</div>
+                    </div>
+                    <div class="modal feedback" id="Feedback">
+                        <div>
+                            <img src="/assets/images/close.png" alt="close">
+                            <div class="text">Если хотите узнать какая методика подходит
+                                для вашего случая просто заполните форму ниже
+                            </div>
+                            <div class="flex-line">
+                                <input type="text" id="Name" placeholder="Ваше имя">
+                                <input type="text" id="Email" placeholder="Ваш email">
+                            </div>
+                            <textarea name="question" id="Message" rows="4" placeholder="Введите вопрос"></textarea>
+                            <div class="button submit">Узнать методику</div>
                         </div>
                     </div>
                 </div>
@@ -86,7 +109,7 @@
                     <p></p>
                 </div>
             </div>
-            <div class="modal">
+            <div class="modal" id="InfoModal">
                 <div>
                     <img src="/assets/images/close.png" alt="close">
                     <div class="text"></div>

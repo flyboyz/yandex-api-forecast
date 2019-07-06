@@ -321,14 +321,20 @@
         @media @s--less {
           font-size: 16px;
         }
+        @media @xxs {
+          font-size: 15px;
+        }
 
         &:not(:last-of-type) {
           margin-bottom: 25px;
+          @media @s--less {
+            margin-bottom: 10px;
+          }
         }
 
         &.centered {
           width: 100%;
-          text-align: center;
+          text-align: center !important;
         }
 
         span {
@@ -397,21 +403,93 @@
 
       & > div {
         position: relative;
-        width: 500px;
-        max-width: 90%;
+        max-width: 95%;
+        max-height: 95%;
         font-size: 22px;
         text-align: center;
         background-color: @calc-blue;
+        @media @m--less {
+          font-size: 18px;
+          overflow-y: scroll;
+        }
 
         img {
           cursor: pointer;
           position: absolute;
           top: 13px;
           right: 13px;
+          opacity: .8;
+          transition: opacity .15s ease-in-out;
+
+          &:hover {
+            opacity: 1;
+          }
         }
 
         .text {
-          padding: 50px 60px;
+          padding: 30px 40px;
+
+          p {
+            margin-bottom: 10px;
+            text-align: left;
+            line-height: 1.2;
+          }
+        }
+      }
+
+      &.feedback {
+        & > div {
+          display: flex;
+          padding: 20px;
+          flex-direction: column;
+
+          .text {
+            padding: 20px;
+            @media @xs {
+              padding: 20px 0;
+            }
+          }
+
+          .flex-line {
+            display: flex;
+            justify-content: space-between;
+          }
+
+          input, textarea {
+            margin: 5px 0;
+            padding: 10px;
+            font-family: Gilroy;
+            font-size: 16px;
+            border: none;
+            border-radius: 3px;
+          }
+
+          input {
+            width: 49%;
+            transition: all .15s ease-in-out;
+
+            &.error {
+              color: white;
+              background-color: indianred;
+            }
+          }
+
+          textarea {
+            resize: none;
+          }
+
+          .submit {
+            margin-top: 5px;
+            background-color: @calc-back;
+
+            &:hover {
+              background-color: darken(@calc-back, 10%);
+            }
+
+            &:active {
+              background-color: lighten(@calc-back, 5%);
+            }
+          }
         }
       }
     }
