@@ -163,8 +163,8 @@ $(function () {
 
         vars.CR1 = .05;
         vars.clicks = Math.round(data.shows * .17); // shows * 85% * 10% * 2
-        vars.SRS = data.price * .045 < 10 ? 10 : data.price * .045;
-        vars.CR2 = 10 * $('#leads').val();
+        vars.SRS = data.price * .295 < 10 ? 10 : data.price * .295;
+        vars.CR2 = $('#leads').val() / 10;
         vars.money = $('#money').val();
         vars.SAS = Math.round(vars.SRS / vars.CR1 / vars.CR2);
         vars.CountOfRequestPerMonth = Math.round(vars.clicks * vars.CR1);
